@@ -32,9 +32,9 @@ const createResumeDetails = async (req, res) => {
   //     message: "Success! Resumes Created",
   //     resume: createResumeDetails,
   //   });
-  // } catch (error) {
-  //   return res.status(500).json({ message: error.message });
-  // }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 const searchResumeDetails = async (req, res) => {
