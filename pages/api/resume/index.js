@@ -32,6 +32,7 @@ const createResumeDetails = async (req, res) => {
   //     message: "Success! Resumes Created",
   //     resume: createResumeDetails,
   //   });
+  console.log("inside")
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
