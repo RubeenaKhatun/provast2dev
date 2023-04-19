@@ -14,25 +14,25 @@ export default async function handler(req, res) {
 
 const createResumeDetails = async (req, res) => {
   try {
-  //   await connectDB();
+    await connectDB();
 
-  //   let { userId, resume } = req.body;
+    let { userId, resume } = req.body;
 
-  //   if (!userId) {
-  //     return res.status(400).json({ message: "Invalid Credentials" });
-  //   }
+    if (!userId) {
+      return res.status(400).json({ message: "Invalid Credentials" });
+    }
 
-  //   const createResumeDetails = new ResumeDetails({
-  //     ...resume,
-  //     user: userId,
-  //   });
+    const createResumeDetails = new ResumeDetails({
+      ...resume,
+      user: userId,
+    });
 
-  //   await createResumeDetails.save();
-  //   res.json({
-  //     message: "Success! Resumes Created",
-  //     resume: createResumeDetails,
-  //   });
-  console.log("inside")
+    await createResumeDetails.save();
+    res.json({
+      message: "Success! Resumes Created",
+      resume: createResumeDetails,
+    });
+    console.log("inside res");
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -50,7 +50,9 @@ const searchResumeDetails = async (req, res) => {
     const resumeDetails = await ResumeDetails.find();
 
     if (resumeDetails) {
-      return res.status(200).json({ message: "Resumes Found", resumes: resumeDetails });
+      return res
+        .status(200)
+        .json({ message: "Resumes Found", resumes: resumeDetails });
     } else {
       return res.status(200).json({ message: "Resumes not found" });
     }
